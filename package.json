@@ -1,0 +1,26 @@
+{
+  "name": "krakenflex",
+  "version": "1.0.0",
+  "description": "Tech test for Krakenflex",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "test": "npx jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/james-clegg/krakenflex.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/james-clegg/krakenflex/issues"
+  },
+  "homepage": "https://github.com/james-clegg/krakenflex#readme",
+  "devDependencies": {
+    "@types/jest": "^29.0.3",
+    "ts-jest": "^29.0.1",
+    "typescript": "^4.8.3"
+  }
+}
