@@ -2,6 +2,7 @@ export interface IOutage {
     id: string;
     begin: string; 
     end: string;
+    name?: string;
 }
 
 interface IDevice {
@@ -13,11 +14,4 @@ export interface ISite {
     id: string;
     name: string;
     devices: IDevice[];
-}
-
-export interface IEnhancedOutage {
-    id: string;
-    name: string;
-    begin: string;
-    end: string;
 }

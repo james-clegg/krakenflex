@@ -1,4 +1,4 @@
-import { IEnhancedOutage, IOutage, ISite } from "./types";
+import { IOutage, ISite } from "./types";
 
 const baseUrl = "https://api.krakenflex.systems/interview-tests-mock-api/v1";
 const headers = {
@@ -23,7 +23,7 @@ export const getSiteInfo = async (siteID: string): Promise<ISite> => {
 
 export const sendUpdatedOutages = async (
   siteID: string,
-  outages: IEnhancedOutage[]
+  outages: IOutage[]
 ): Promise<void> => {
   await fetch(`${baseUrl}/site-outages/${siteID}`, {
     method: "POST",
