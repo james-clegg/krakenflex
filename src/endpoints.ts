@@ -1,5 +1,5 @@
 import { IOutage, ISite } from "./types";
-import fetch from "node-fetch";
+import axios from "axios";
 
 const baseUrl = "https://api.krakenflex.systems/interview-tests-mock-api/v1";
 const headers = {
@@ -7,31 +7,27 @@ const headers = {
 };
 
 export const getAllOutages = async (): Promise<IOutage[]> => {
-  const response = await fetch(`${baseUrl}/outages`, {
-    method: "GET",
-    headers,
+  const response = await axios.get(`${baseUrl}/outages`, {
+    headers: headers,
   });
-  const data = (await response.json()) as IOutage[];
-  return data;
+  return response.data as IOutage[];
 };
 
 export const getSiteInfo = async (siteID: string): Promise<ISite> => {
-  const response = await fetch(`${baseUrl}/site-info/${siteID}`, {
-    method: "GET",
+  const response = await axios.get(`${baseUrl}/site-info/${siteID}`, {
     headers,
   });
-  const data = (await response.json()) as ISite;
-  return data;
+  return response.data as ISite;
 };
 
 export const sendUpdatedOutages = async (
   outages: IOutage[],
   siteID: string
-): Promise<boolean> => {
-  const response = await fetch(`${baseUrl}/site-outages/${siteID}`, {
+): Promise<void> => {
+  await axios({
     method: "POST",
+    url: `${baseUrl}/site-outages/${siteID}`,
+    data: JSON.stringify(outages),
     headers: { ...headers, "content-type": "application/json" },
-    body: JSON.stringify(outages),
   });
-  return response.ok;
 };
