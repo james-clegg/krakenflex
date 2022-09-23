@@ -1,7 +1,7 @@
 import { getAllOutages, getSiteInfo, sendUpdatedOutages } from "./endpoints";
 import { filterOldOrIrrelevantOutages } from "./utils";
 
-const updateOutagesWithDeviceName = async (siteID: string) => {
+const handler = async (siteID: string) => {
   try {
     const outages = await getAllOutages();
     const siteInfo = await getSiteInfo(siteID);
@@ -13,4 +13,4 @@ const updateOutagesWithDeviceName = async (siteID: string) => {
   }
 };
 
-updateOutagesWithDeviceName("norwich-pear-tree");
+handler("norwich-pear-tree");
