@@ -16,7 +16,7 @@ This was written as part of the backend test for Krakenflex to answer the below 
 
 * Clone the repository.
 * Run `npm i` to install the dependencies.
-* Add the API key as an environment variable called `API_KEY`. This can be done by creating a `.env` file, or more simply by running the command `export API_KEY=<api key>` inside the terminal that you intend to run the program within.
+* Add the API key as an environment variable called `API_KEY`. This can be done by adding it to a `.env` file and running `npm i dotenv`, or more simply by running the command `export API_KEY=<api key>` inside the terminal that you intend to run the program within.
 * Run the command `npm run program` which will compile the typescript code, navigate into the `build` directory, and run the program. 
 * If the program ran successfully, you should see a small log suggesting so in the console. If there was an error, it should be logged to the console instead.
 
