@@ -1,45 +1,10 @@
 import { handler } from "../src/index";
 import * as utilsObj from "../src/utils";
 import * as endpointsObj from "../src/endpoints";
-import { IOutage, ISite } from "../src/types";
+import { IOutage, ISiteInfo } from "../src/types";
+import { mockOutages, mockSiteInfo, mockFilteredOutages } from "./mocks";
 
 const siteID = "norwich-pear-tree";
-
-const mockOutages: IOutage[] = [
-  {
-    id: "002b28fc-283c-47ec-9af2-ea287336dc1b",
-    begin: "2021-07-26T17:09:31.036Z",
-    end: "2021-08-29T00:37:42.253Z",
-  },
-  {
-    id: "002b28fc-283c-47ec-9af2-ea287336dc1b",
-    begin: "2022-05-23T12:21:27.377Z",
-    end: "2022-11-13T02:16:38.905Z",
-  },
-];
-
-const mockSiteInfo: ISite = {
-  id: "kingfisher",
-  name: "KingFisher",
-  devices: [
-    {
-      id: "002b28fc-283c-47ec-9af2-ea287336dc1b",
-      name: "Battery 1",
-    },
-    {
-      id: "086b0d53-b311-4441-aaf3-935646f03d4d",
-      name: "Battery 2",
-    },
-  ],
-};
-
-const mockFilteredOutages: IOutage[] = [
-  {
-    id: "002b28fc-283c-47ec-9af2-ea287336dc1b",
-    begin: "2022-05-23T12:21:27.377Z",
-    end: "2022-11-13T02:16:38.905Z",
-  },
-];
 
 let getAllOutagesSpy: jest.SpyInstance;
 let getSiteInfoSpy: jest.SpyInstance;
@@ -48,15 +13,16 @@ let filterOldOrIrrelevantOutagesSpy: jest.SpyInstance;
 
 describe("Handler", () => {
   beforeEach(() => {
-    const outagesUnknownMock: unknown = mockOutages;
+    const mockOutagesAsUnknown = mockOutages as unknown;
+    const mockSiteInfoAsUnknown = mockSiteInfo as unknown;
+
     getAllOutagesSpy = jest
       .spyOn(endpointsObj, "getAllOutages")
-      .mockReturnValue(outagesUnknownMock as Promise<IOutage[]>);
+      .mockReturnValue(mockOutagesAsUnknown as Promise<IOutage[]>);
 
-    const siteInfoUnknownMock: unknown = mockSiteInfo;
     getSiteInfoSpy = jest
       .spyOn(endpointsObj, "getSiteInfo")
-      .mockReturnValue(siteInfoUnknownMock as Promise<ISite>);
+      .mockReturnValue(mockSiteInfoAsUnknown as Promise<ISiteInfo>);
 
     filterOldOrIrrelevantOutagesSpy = jest
       .spyOn(utilsObj, "filterOldOrIrrelevantOutages")
