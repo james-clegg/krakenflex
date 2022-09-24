@@ -1,4 +1,4 @@
-import { IOutage, ISite } from "./types";
+import { IOutage, ISiteInfo } from "./types";
 import axios from "axios";
 
 const baseUrl = "https://api.krakenflex.systems/interview-tests-mock-api/v1";
@@ -13,11 +13,11 @@ export const getAllOutages = async (): Promise<IOutage[]> => {
   return response.data as IOutage[];
 };
 
-export const getSiteInfo = async (siteID: string): Promise<ISite> => {
+export const getSiteInfo = async (siteID: string): Promise<ISiteInfo> => {
   const response = await axios.get(`${baseUrl}/site-info/${siteID}`, {
     headers,
   });
-  return response.data as ISite;
+  return response.data as ISiteInfo;
 };
 
 export const sendUpdatedOutages = async (
